@@ -1,0 +1,46 @@
+\documentclass{article}
+\begin{document}
+
+\paragraph{Question 3} 
+
+Supposons que $f$ est $C^{1}$ \\
+
+On calcule l'erreur locale: $e^{j+1} = (x^{j}+ \int_{t_{j}}^{t_{j+1}} f(s,x(s)) \, \mathrm{d}s ) - x^{j+1}$ \\
+Pour cela, on s'intéresse à la solution du problème de Cauchy 
+$\left \{
+\begin{array}{rcl}
+\dot x&=&f(t,x) \\
+x(t_{j})&=&x^{j}
+\end{array}
+\right.$ \\
+
+On a donc \\$x^{j}+ \int_{t_{j}}^{t_{j+1}} f(s,x(s)) \, \mathrm{d}s = x(t_{j+1})$\\
+
+$f$ est $C^{1}$ donc $x$ est $C^{2}$. On peut donc écrire son développement limité à l'ordre 2: \\
+
+$x(t_{j+1}) = x(t_{j}) + \Delta t f(t_{j}, x(t_{j})) + \frac{\Delta t^{2}} {2} \ddot{x} (t_{j}) + O(\Delta t^{3})$ \\
+
+Or $\ddot{x} (t_{j}) = \frac{ \partial }{ \partial t} f(t_{j}, x(t_{j})) = \partial _{1}f(t_{j},x(t_{j})) + \partial _{2} f(t_{j}), x(t_{j})) \times f(t_{j}, x(t_{j}))$\\
+
+D'où: \\
+
+$x(t_{j+1}) = x(t_{j}) + \Delta t f(t_{j}, x(t_{j})) + \frac{\Delta t^{2}} {2}  \partial _{1} f(t_{j}, x(t_{j})) + \frac{\Delta t^{2}} {2} \partial _{2} f(t_{j}, x(t_{j})) f(t_{j}, x(t_{j})) + O(\Delta t^{3})$ \\
+
+On utilise un schéma d'Euler explicite donc $x^{j+1} - x(t_{j}) = \Delta t f(t_{j}, x(t_{j}))$\\
+On remplace:\\
+
+$x(t_{j+1}) = x(t_{j}) + \frac{\Delta t } {2} f(t_{j}, x(t_{j})) + \frac{\Delta t} {2} \left[  f(t_{j}, x(t_{j})) + \Delta t \partial _{1} f(t_{j}, x(t_{j})) + \partial _{2} f(t_{j}, x(t_{j})) (x^{j+1} - x(t_{j}))\right] + O(\Delta t^{3})$ \\
+
+On utilise le développement limité à l'ordre 1 de $f$, ce qui nous permet d'écrire: \\
+
+$x(t_{j+1}) = x(t_{j}) + \frac{\Delta t} {2} \left[ f(t_{j}, x(t_{j})) + f(t_{j+1}, x(t_{j+1})) \right]  + O(\Delta t^{3}) $\\
+
+Or $e^{j+1} = x(t_{j+1}) - x^{j+1} = x(t_{j+1})-x(t_{j}) - \Delta t f(t_{j}, x(t_{j}))$ \\
+
+Donc finalement\\
+
+$\Vert e^{j+1} \Vert = \Delta t \frac{\Vert f(t_{j+1}, x(t_{j+1})) - f(t_{j}, x(t_{j}))\Vert} {2} + O(\Delta t^{3}) $
+
+
+
+\end{document}
